@@ -16,7 +16,6 @@
 <nav aria-label="Table of contents">
   <strong>Table of contents</strong>
   <ul>
-    <li>Objective</li>
     <li>Prerequisites</li>
     <li>High-level overview</li>
     <li>Step-by-step deployment &amp; configuration</li>
@@ -26,12 +25,6 @@
     <li>Suggested commit message / PR description</li>
   </ul>
 </nav>
-
-<section id="objective">
-  <h2>Objective</h2>
-  <p>Deploy an Azure Windows Server VM and host <strong>osTicket</strong> using IIS + PHP. Configure the application
-  and verify a full ticket lifecycle to simulate a realistic helpdesk environment suitable for inclusion in a portfolio.</p>
-</section>
 
 <section id="prerequisites">
   <h2>Prerequisites</h2>
