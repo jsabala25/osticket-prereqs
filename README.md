@@ -17,7 +17,7 @@
   <strong>Table of contents</strong>
   <ul>
     <li>Prerequisites</li>
-    <li>High-level overview</li>
+    <li>Technologies Used</li>
     <li>Step-by-step deployment &amp; configuration</li>
     <li>Verification checklist</li>
     <li>Troubleshooting tips</li>
@@ -38,7 +38,7 @@
 </section>
 
 <section id="overview">
-  <h2>High-level overview</h2>
+  <h2>Technologies Used</h2>
   <ul>
     <li><strong>Platform:</strong> Azure VM (Windows Server)</li>
     <li><strong>Web stack:</strong> IIS + PHP (FastCGI / CGI)</li>
@@ -55,17 +55,15 @@
   <h3>1. Provision the Azure VM</h3>
   <ol>
     <li>Create resource group (optional) and provision a Windows Server VM sized for lab needs.</li>
+    <img width="783" height="1134" alt="image" src="https://github.com/user-attachments/assets/c6c3a2a0-dd49-4599-9ce2-c13cbd42afc6" />
     <li>Configure NSG rules to allow:
       <ul>
         <li>RDP (TCP 3389) — restrict to your IP if possible</li>
         <li>HTTP (TCP 80) and HTTPS (TCP 443) if external access is required</li>
       </ul>
     </li>
-    <li>Connect to the VM via RDP or Azure Bastion.</li>
+    <li>Connect to the VM via RDP.</li>
   </ol>
-
-<img width="783" height="1134" alt="image" src="https://github.com/user-attachments/assets/c6c3a2a0-dd49-4599-9ce2-c13cbd42afc6" />
-
 
   <h3>2. Install IIS</h3>
   <p>Open <strong>Server Manager → Add roles and features → Web Server (IIS)</strong>. Include Management Tools if you plan on remote management.</p>
@@ -84,21 +82,13 @@
     <li>(Recommended) Install <strong>PHP Manager for IIS</strong> to register PHP more easily.</li>
     <li>Register the PHP executable in IIS (via PHP Manager or FastCGI Settings).</li>
     <li>Verify PHP by creating <code>phpinfo.php</code> in the web root:
-      <pre><code>&lt;?php
-phpinfo();
-?&gt;</code></pre>
-      Browse to <code>http://&lt;vm-ip&gt;/phpinfo.php</code> to validate.
     </li>
   </ol>
 
 <img width="540" height="506" alt="image" src="https://github.com/user-attachments/assets/db5ce6c5-cff5-4f6e-8ae1-9e60ae2f7216" />
 
   <h3>5. Prepare the database</h3>
-  <p>Install MySQL/MariaDB on the VM or provision a managed DB instance. Create the DB and a dedicated user for osTicket:</p>
-  <pre><code>CREATE DATABASE osticket CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER 'osticketuser'@'localhost' IDENTIFIED BY 'StrongPasswordHere!';
-GRANT ALL PRIVILEGES ON osticket.* TO 'osticketuser'@'localhost';
-FLUSH PRIVILEGES;</code></pre>
+  <p>Install MySQL on the VM. Create the DB and a dedicated user for osTicket:</p>
   <p>Harden the DB: set root password, remove anonymous users, disable remote root login, remove test DB.</p>
 
   <h3>6. Deploy osTicket files</h3>
